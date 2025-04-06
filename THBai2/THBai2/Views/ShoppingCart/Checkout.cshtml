@@ -1,0 +1,228 @@
+﻿@model THBai2.Models.Order
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+    .checkout-container {
+        max-width: 800px;
+        margin: 150px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .checkout-header {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #f2f2f2;
+        margin-bottom: 20px;
+    }
+
+    .checkout-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #ee4d2d;
+        margin: 0;
+    }
+
+    .checkout-icon {
+        margin-right: 10px;
+        color: #ee4d2d;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #ee4d2d;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(238, 77, 45, 0.1);
+        }
+
+    textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .btn-submit {
+        background-color: #ee4d2d;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+        text-transform: uppercase;
+    }
+
+        .btn-submit:hover {
+            background-color: #e3381a;
+        }
+
+    .order-summary {
+        background-color: #fafafa;
+        padding: 20px;
+        border-radius: 4px;
+        margin-top: 30px;
+    }
+
+    .summary-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #333;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .summary-total {
+        font-weight: 600;
+        font-size: 18px;
+        color: #ee4d2d;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    .payment-methods {
+        margin-top: 20px;
+    }
+
+    .payment-title {
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .payment-option {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+        .payment-option:hover {
+            border-color: #ee4d2d;
+        }
+
+        .payment-option input {
+            margin-right: 10px;
+        }
+
+    .payment-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        object-fit: contain;
+    }
+</style>
+
+<div class="checkout-container">
+    <div class="checkout-header">
+        <i class="bi bi-cart-check checkout-icon"></i>
+        <h2 class="checkout-title">Checkout</h2>
+    </div>
+
+    <form asp-action="Checkout" method="post">
+        <div class="form-group">
+            <label class="form-label" asp-for="ShippingAddress">Shipping Address</label>
+            <input asp-for="ShippingAddress" class="form-control" placeholder="Enter your full address" required />
+            <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="Notes">Order Notes (Optional)</label>
+            <textarea asp-for="Notes" class="form-control" placeholder="Any special instructions for your order..."></textarea>
+        </div>
+
+        <div class="payment-methods">
+            <div class="payment-title">Payment Method</div>
+
+            <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="COD" checked />
+                <img src="https://png.pngtree.com/png-clipart/20220603/original/pngtree-red-badge-cod-cash-on-delivery-png-image_7900047.png" class="payment-icon" alt="COD">
+                <span>Cash on Delivery (COD)</span>
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="BankTransfer" />
+                <img src="https://play-lh.googleusercontent.com/otQG-p4ViRwqmJ9QL-4ln0hz92mpU1srjH5PrTUnZvxvMl58DoYkOeVifln2rybEcNA=w240-h480-rw" class="payment-icon" alt="Bank Transfer">
+                <span>Bank Transfer</span>
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="EWallet" />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLEoAqcjShm5DoOclIwIsy92HgOxiSP4WYQg&s" class="payment-icon" alt="E-Wallet">
+                <span>E-Wallet</span>
+            </label>
+        </div>
+
+        <div class="order-summary">
+            <div class="summary-title">Order Summary</div>
+
+            <!-- You would dynamically generate these from your cart items -->
+            <div class="summary-item">
+                <span>Subtotal (3 items)</span>
+                <span>250,000 ₫</span>
+            </div>
+            <div class="summary-item">
+                <span>Shipping Fee</span>
+                <span>30,000 ₫</span>
+            </div>
+            <div class="summary-item">
+                <span>Discount</span>
+                <span>-50,000 ₫</span>
+            </div>
+            <div class="summary-item summary-total">
+                <span>Total</span>
+                <span>230,000 ₫</span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Place Order</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

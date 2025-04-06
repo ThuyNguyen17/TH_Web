@@ -1,0 +1,215 @@
+﻿@model IEnumerable<THBai2.Models.Order>
+@{
+    ViewData["Title"] = "Order List";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+    .order-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #f2f2f2;
+        margin-bottom: 20px;
+    }
+
+    .order-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #ee4d2d;
+        margin: 0;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+        .table thead th {
+            background-color: #fafafa;
+            color: #666;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 500;
+            border-bottom: 2px solid #f2f2f2;
+        }
+
+        .table tbody td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f2f2f2;
+            vertical-align: middle;
+        }
+
+        .table tbody tr:hover {
+            background-color: #fff9f8;
+        }
+
+    .order-id {
+        color: #ee4d2d;
+        font-weight: 500;
+    }
+
+    .order-date {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .order-price {
+        color: #ee4d2d;
+        font-weight: 600;
+    }
+
+    .order-address {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .order-notes {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .status-processing {
+        background-color: #fff4e5;
+        color: #ff9500;
+    }
+
+    .status-shipped {
+        background-color: #e5f6ff;
+        color: #0077cc;
+    }
+
+    .status-delivered {
+        background-color: #e5ffe7;
+        color: #00aa44;
+    }
+
+    .status-cancelled {
+        background-color: #ffebee;
+        color: #ff3b30;
+    }
+
+    .empty-orders {
+        text-align: center;
+        padding: 50px 0;
+    }
+
+    .empty-icon {
+        font-size: 60px;
+        color: #ddd;
+        margin-bottom: 20px;
+    }
+
+    .empty-text {
+        font-size: 18px;
+        color: #888;
+        margin-bottom: 20px;
+    }
+
+    .btn-view {
+        color: #ee4d2d;
+        background: none;
+        border: 1px solid #ee4d2d;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+        .btn-view:hover {
+            background: #fff6f5;
+        }
+</style>
+
+<div class="order-container">
+    <div class="order-header">
+        <h2 class="order-title">Order List</h2>
+        <div>
+            <span>Total Orders: @Model.Count()</span>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="order-id">#@order.Id</td>
+                        <td>@order.ApplicationUser?.UserName</td>
+                        <td class="order-date">@order.OrderDate.ToString("MMM dd, yyyy")</td>
+                        <td class="order-price">@order.TotalPrice.ToString("N0") ₫</td>
+                        <td class="order-address" title="@order.ShippingAddress">@order.ShippingAddress</td>
+                        <td>
+                            @{
+                                var statusClass = "status-processing";
+                                var statusText = "Processing";
+                                // You can customize this based on your order status property
+                                // Example: if(order.Status == "Shipped") { ... }
+                            }
+                            <span class="status-badge @statusClass">@statusText</span>
+                        </td>
+                        <td class="order-notes" title="@order.Notes">@order.Notes</td>
+                        <td>
+                            <button class="btn-view">Details</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="empty-orders">
+            <div class="empty-icon">
+                <i class="bi bi-box-seam"></i>
+            </div>
+            <div class="empty-text">No orders found</div>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
+        </div>
+    }
+</div>

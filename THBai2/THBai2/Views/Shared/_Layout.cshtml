@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopee Việt Nam | Mua và Bán Trên Ứng Dụng Di Động hoặc Website</title>
+    <link rel="shortcut icon" href="~/img/shopee.svg" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/normalize.min.css">
+    <link rel="stylesheet" href="~/css/base.css">
+    <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/grid.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <link rel="stylesheet" href="~/css/cart.css">
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap&subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .cart-button {
+        background-color: azure;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+        .cart-button .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+</style>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="grid wide">
+                <nav class="header__navbar hide-on-mobile-tablet">
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item">
+                            <a href="https://banhang.shopee.vn/" class="header__navbar-item-link header__navbar-item--separate">Seller Center</a>
+                        </li>
+                        <li class="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate">
+                            Download
+                            <!-- Header QR Code -->
+                            <div class="header__qr">
+                                <img class="header__qr-img" src="~/Images/qr_code.png" alt="QR code">
+                                <div class="header__qr-apps">
+                                    <a href="" class="header__qr-link">
+                                        <img src="~/Images/googleplay.png" alt="Google Play" class="header__qr-download-img">
+                                    </a>
+                                    <a href="" class="header__qr-link">
+                                        <img src="~/Images/appstore.png" alt="Appstore" class="header__qr-download-img">
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="header__navbar-item">
+                            <span class="header__navbar-title--no-pointer">Follow us on</span>
+                            <a href="https://facebook.com/ShopeeVN" target="_blank" class="header__navbar-icon-link" rel="noopener noreferrer">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="https://instagram.com/Shopee_VN" target="_blank" class="header__navbar-icon-link" rel="noopener noreferrer">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item header__navbar-item--has-notify">
+                            <a href="#" class="header__navbar-item-link">
+                                <i class="bi bi-bell" style="margin-right:5px"></i>
+                                Notifications
+                            </a>
+                            <!-- Header Notification -->
+                            <div class="header__notify">
+                                <header class="header__notify-header">
+                                    <h3>Thông báo mới nhận</h3>
+                                </header>
+                                <ul class="header__notify-list">
+                                    <li class="header__notify-item header__notify-item--viewed">
+                                        <a href="" class="header__notify-link">
+                                            <img src="https://www.vietskin.vn/wp-content/uploads/2020/08/image-skincare-9.jpg" alt="" class="header__notify-img">
+                                            <div class="header__notify-info">
+                                                <span class="header__notify-name">Xác thực chính hãng nguồn gốc các sản phẩm Ohui</span>
+                                                <span class="header__notify-description">Xác thực chính hãng nguồn gốc các sản phẩm Ohui</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="header__notify-item">
+                                        <a href="" class="header__notify-link">
+                                            <img src="https://luanvanviet.com/wp-content/uploads/2020/08/hinh-anh-san-pham-la-gi-4.jpg" alt="" class="header__notify-img">
+                                            <div class="header__notify-info">
+                                                <span class="header__notify-name">Sale Sốc bộ dưỡng Ohui The First Tái tạo trẻ hóa da SALE OFF 70%</span>
+                                                <span class="header__notify-description">Siêu sale duy nhất 3 ngày 11 - 13/12/2022</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="header__notify-item">
+                                        <a href="" class="header__notify-link">
+                                            <img src="http://d20aeo683mqd6t.cloudfront.net/vi/articles/title_images/000/040/760/medium/Hadalabo-5822.jpg?2021" alt="" class="header__notify-img">
+                                            <div class="header__notify-info">
+                                                <span class="header__notify-name">DA NHẠY CẢM THÌ CÓ DÙNG ĐƯỢC SECRET KHÔNG?</span>
+                                                <span class="header__notify-description">"Da mình nhạy cảm thì có dùng được Secret không?"</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="header__notify-item">
+                                        <a href="" class="header__notify-link">
+                                            <img src="https://www.thmilk.vn/wp-content/uploads/2021/03/RICE_464x297.jpg" alt="" class="header__notify-img">
+                                            <div class="header__notify-info">
+                                                <span class="header__notify-name">BỘ SƯU TẬP PHIÊN BẢN GIỚI HẠN MÙA LỆ HỘI 2021</span>
+                                                <span class="header__notify-description">BỘ SƯU TẬP PHIÊN BẢN GIỚI HẠN MÙA LỆ HỘI 2021</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <footer class="header__notify-footer">
+                                    <a href="#" class="header__notify-footer-btn">Xem tất cả</a>
+                                </footer>
+                            </div>
+                        </li>
+                        <li class="header__navbar-item">
+                            <a href="https://help.shopee.vn/vn/s" class="header__navbar-item-link">
+                                <i class="fa-solid fa-circle-question" style="padding-right:5px"></i>
+                                Help
+                            </a>
+                        </li>
+
+                        <li class="header__navbar-item header__navbar-user">
+                            @* @if (User.Identity.IsAuthenticated) *@
+                            @* { *@
+                            @*     <img src="@Url.Content("~/Images/hinhThuy.jpg")" alt="Avatar" class="header__navbar-user-img"> *@
+                            @*     <span class="header__navbar-user-name">@User.Identity.Name</span> *@
+                            @*     <ul class="header__navbar-user-menu"> *@
+                            @*         <li class="header__navbar-user-item"> *@
+                            @*             <a href="/Account/Profile">Tài khoản của tôi</a> *@
+                            @*         </li> *@
+                            @*         <li class="header__navbar-user-item"> *@
+                            @*             <a href="/Account/Orders">Đơn mua</a> *@
+                            @*         </li> *@
+                            @*         <li class="header__navbar-user-item header__navbar-user-item--separate"> *@
+                            @*             <a aspasp-controller="Account" asp-action="Logout">Đăng xuất</a> *@
+                                      
+                            @*         </li> *@
+                            @*     </ul> *@
+                            @* } *@
+                            @* else *@
+                            @* { *@
+                                <partial name="_LoginPartial" />
+                            @* } *@
+                        </li>
+                    </ul>
+                </nav>
+  
+                <div class="header-with-search">
+                    <label for="mobile-search-checkbox" class="header__mobile-search">
+                        <i class="header__mobile-search-icon fa-solid fa-magnifying-glass"></i>
+                    </label>
+                    <input type="checkbox" hidden id="mobile-search-checkbox" class="mobile-search-checkbox">
+
+                    <div class="header__search">
+                        <div class="header__search-input-wrap">
+                            <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
+                            <!-- History search box -->
+                            <div class="header__search-history">
+                                <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
+                                <ul class="header__search-history-list">
+                                    <li class="header__search-history-item">
+                                        <a href="#">
+                                            BẬT MÍ 5.5 - SĂN TRƯỚC MÃ 5.5
+                                            <img src="https://cf.shopee.vn/file/491389dce9eabc3510a3e8a21cc40ef7" alt="Sale">
+                                        </a>
+                                    </li>
+                                    <li class="header__search-history-item">
+                                        <a href="#">Kem trị mụn</a>
+                                    </li>
+                                    <li class="header__search-history-item">
+                                        <a href="#">Iphone 13 Pro Max</a>
+                                    </li>
+                                    <li class="header__search-history-item">
+                                        <a href="#">Máy tính xách tay</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="header__search-select">
+                            <span class="header__search-select-label">
+                                Trong shop
+                                <i class="header__search-select-icon fa-solid fa-angle-down"></i>
+                            </span>
+                            <!-- Search option box -->
+                            <ul class="header__search-option">
+                                <li class="header__search-option-item header__search-option-item--active">
+                                    <span>Trong shop</span>
+                                    <i class="fa-solid fa-check"></i>
+                                </li>
+                                <li class="header__search-option-item">
+                                    <span>Ngoài shop</span>
+                                    <i class="fa-solid fa-check"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="header__search-btn">
+                            <i class="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    
+
+                        <!-- Header search suggest -->
+                        <ul class="header__search-suggest-list hide-on-mobile-tablet">
+                            <li class="header__search-suggest-list-item">
+                                <a href="#" class="header__search-suggest-link">Dép</a>
+                            </li>
+                            <li class="header__search-suggest-list-item">
+                                <a href="#" class="header__search-suggest-link">Áo Phông</a>
+                            </li>
+                            <li class="header__search-suggest-list-item">
+                                <a href="#" class="header__search-suggest-link">Váy</a>
+                            </li>
+                            <li class="header__search-suggest-list-item">
+                                <a href="#" class="header__search-suggest-link">Áo Khoác</a>
+                            </li>
+                            <li class="header__search-suggest-list-item">
+                                <a href="#" class="header__search-suggest-link">Áo Thun</a>
+                            </li>
+                            <li class="header__search-suggest-list-item">
+                                <a href="#" class="header__search-suggest-link">Túi xách nữ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a asp-controller="ShoppingCart" asp-action="Index" class="cart-button flex items-center justify-center p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-300 ease-in-out shadow-lg">
+                        <i class="bi bi-cart text-lg"></i>
+                    </a>
+
+
+                </div>
+            </div>
+        </header>
+        <div class="container mt-4">
+            <div class="row g-4">
+                @RenderBody()
+            </div>
+        </div>
+
+        <footer class="footer py-3 mt-4 bg-light">
+            <div class="container text-center">
+                <p class="mb-1">&copy; 2025 SANTIHUONG. All Rights Reserved.</p>
+                <p class="mb-0">
+                    <a href="#" class="text-decoration-none">Privacy Policy</a> |
+                    <a href="#" class="text-decoration-none">Terms of Service</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿@model THBai2.Models.Product
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4" style="max-width: 500px; margin: auto; border-radius: 15px; background-color: #f8f9fa;">
+        <div class="card-header text-center" style="background-color: #0078d4; color: white; border-radius: 10px;">
+            <h2>Delete Product</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="DeleteConfirmed" method="post">
+                <input type="hidden" asp-for="Id" />
+                <p class="text-center" style="font-size: 1.1rem; color: #7f8c8d;">
+                    Are you sure you want to delete <strong style="color: #0078d4;">@Model.Name</strong>?
+                </p>
+                <div class="d-flex justify-content-around mt-4">
+                    <button type="submit" class="btn btn-danger btn-lg rounded-pill px-4">Delete</button>
+                    <a href="@Url.Action("Index", "Product")" class="btn btn-secondary btn-lg rounded-pill px-4">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

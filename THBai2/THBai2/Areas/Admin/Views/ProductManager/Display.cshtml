@@ -1,0 +1,15 @@
+﻿@model THBai2.Models.Product
+@{
+    ViewData["Title"] = "Display Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="product-container card shadow-lg p-4" style="max-width: 500px; margin: 20px auto; border-radius: 15px; background-color: #f8f9fa;">
+    <h2 class="text-center" style="color: #2c3e50; font-weight: bold; margin-bottom: 10px;">@Model.Name</h2>
+    <h3 class="text-center" style="color: #2980b9;">Price: $@Model.Price</h3>
+    <p style="font-size: 1.1rem; line-height: 1.5; color: #7f8c8d;">@Model.Description</p>
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <img src="@Model.ImageUrl" alt="Product Image" style="display: block; margin: 10px auto; width: 250px; height: 150px;object-fit: cover; border-radius: 10px; border: 1px solid #ddd;" />
+    }
+    <a asp-area="Admin" asp-controller="ProductManager" asp-action="Index" class="btn btn-primary btn-block rounded-pill mt-3" style="padding: 10px;">Back to List</a>
+</div>

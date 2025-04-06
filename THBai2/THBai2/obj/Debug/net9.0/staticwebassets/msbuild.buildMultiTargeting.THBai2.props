@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\THBai2.props" />
+</Project>

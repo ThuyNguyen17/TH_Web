@@ -1,0 +1,405 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="~/css/cart.css">
+
+<style>
+    /* Modern Shopee-like UI with vibrant colors */
+    :root {
+        --primary-color: #ee4d2d;
+        --primary-hover: #d73211;
+        --secondary-color: #ffce3d;
+        --text-dark: #333;
+        --text-light: #666;
+        --bg-light: #f5f5f5;
+        --border-radius: 8px;
+        --box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    body {
+        background-color: var(--bg-light);
+        font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .container {
+      
+        max-width: 1200px;
+        padding: 20px;
+        position: relative;
+    }
+
+
+    .banner-container {
+  
+        position: relative;
+        margin-bottom: 20px;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        height: 600px;
+    }
+
+    .promo-banner {
+        margin-top:81px;
+        width: 100%;
+        height: 50%;
+    }
+
+    .product-card {
+        margin-top: 10px; /* Thêm khoảng cách trên */
+        border-radius: var(--border-radius);
+        border: 1px solid #eaeaea;
+        transition: var(--transition);
+        overflow: hidden;
+        position: relative;
+        background: white;
+        box-shadow: var(--box-shadow);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+    .product-img-container {
+        position: relative;
+        width: 100%;
+        padding-top: 100%;
+        background: #f9f9f9;
+        overflow: hidden;
+    }
+
+    .product-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 10px;
+        transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-img {
+        transform: scale(1.05);
+    }
+
+    .discount-badge {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        background: var(--primary-color);
+        color: white;
+        padding: 3px 6px;
+        font-size: 12px;
+        font-weight: bold;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        z-index: 2;
+    }
+
+    .flash-sale-ribbon {
+        position: absolute;
+        top: 10px;
+        right: -25px;
+        background-color: #ffc107;
+        color: #d73211;
+        padding: 2px 25px;
+        transform: rotate(45deg);
+        font-size: 11px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 1;
+    }
+
+    .product-price {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .old-price {
+        text-decoration: line-through;
+        color: var(--text-light);
+        font-size: 14px;
+    }
+
+    .product-sold {
+        font-size: 12px;
+        color: var(--text-light);
+        position: relative;
+        padding-left: 18px;
+    }
+
+        .product-sold::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23888'%3E%3Cpath d='M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2h-15z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+    .rating-stars {
+        color: var(--secondary-color);
+        font-size: 12px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .rating-count {
+        color: var(--text-light);
+        font-size: 11px;
+        margin-left: 5px;
+    }
+
+    .add-to-cart-btn {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 0;
+        width: 100%;
+        font-weight: 500;
+        transition: var(--transition);
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .add-to-cart-btn:hover {
+            background: var(--primary-hover);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .add-to-cart-btn i {
+            margin-right: 5px;
+        }
+
+    .product-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 40px;
+        font-size: 14px;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+        line-height: 1.4;
+    }
+
+    .product-info {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .price-container {
+        margin: 8px 0;
+    }
+
+    .current-price {
+        font-size: 18px;
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+    .discount-percent {
+        background-color: #ffeee8;
+        color: var(--primary-color);
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-size: 12px;
+        margin-left: 5px;
+        font-weight: bold;
+    }
+
+    .countdown-timer {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        width: 80%;
+        background: rgba(238, 77, 45, 0.8);
+        padding: 15px;
+        border-radius: var(--border-radius);
+    }
+
+    .promo-text {
+        font-weight: bold;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: white;
+    }
+
+    #countdown {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .time-unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: bold;
+        min-width: 60px;
+    }
+
+        .time-unit span:first-child {
+            font-size: 2.5rem;
+            background: rgba(255,255,255,0.9);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .time-unit span:last-child {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: white;
+        }
+
+    .promo-text {
+        font-size: 1.2rem;
+    }
+
+    .time-unit span:first-child {
+        font-size: 1.5rem;
+    }
+
+    .time-unit {
+        min-width: 40px;
+    }
+
+    #countdown {
+        gap: 8px;
+    }
+
+    .countdown-timer {
+        padding: 10px;
+        margin-top: 250px;
+        bottom: 10px;
+    }
+
+</style>
+
+<div class="container mt-4">
+    <div class="banner-container">
+        <img class="promo-banner" src="https://down-vn.img.susercontent.com/file/vn-11134258-7ra0g-m7vze2oqoupu2e" alt="Promotion Banner">
+        <div class="countdown-timer">
+            <div class="promo-text">4.4 SIÊU HỘI FREESHIP | CÒN</div>
+            <div id="countdown">
+                <div class="time-unit">
+                    <span id="days">00</span>
+                    <span>NGÀY</span>
+                </div>
+                <div class="time-unit">
+                    <span id="hours">00</span>
+                    <span>GIỜ</span>
+                </div>
+                <div class="time-unit">
+                    <span id="minutes">00</span>
+                    <span>PHÚT</span>
+                </div>
+                <div class="time-unit">
+                    <span id="seconds">00</span>
+                    <span>GIÂY</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="product-card h-100">
+                    <div class="flash-sale-ribbon">FLASH SALE</div>
+
+                    <div class="product-img-container">
+                        <img src="@product.ImageUrl" class="product-img" alt="@product.Name">
+                        <div class="discount-badge">GIẢM 20%</div>
+                    </div>
+
+                    <div class="product-info">
+                        <div class="product-title">@product.Name</div>
+
+                        <div class="price-container">
+                                <span class="current-price">$@product.Price.ToString("#,##0.00")</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="rating-stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="rating-count">(4.5)</span>
+                            </div>
+                            <div class="product-sold">1.2k sold</div>
+                        </div>
+
+                        @{
+                            var numOfQuantity = 1;
+                        }
+
+                        <a asp-controller="ShoppingCart" asp-action="AddToCart"
+                           asp-route-productId="@product.Id" asp-route-quantity="@numOfQuantity"
+                           class="btn add-to-cart-btn">
+                            <i class="bi bi-cart-fill me-1"></i> Add to Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    // Set the target date (set this to your event date)
+    var targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 3); // 3 days from now
+    targetDate.setHours(23, 59, 59, 0); // End of day
+
+    // Update the countdown every second
+    var interval = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = targetDate - now;
+
+        // Calculate time components
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result
+        document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+        // If the countdown is over, display a message
+        if (distance < 0) {
+            clearInterval(interval);
+            document.getElementById("countdown").innerHTML = "<span style='color:white;font-size:1.5rem;'>KẾT THÚC</span>";
+        }
+    }, 1000);
+</script>
